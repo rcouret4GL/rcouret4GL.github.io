@@ -1,5 +1,7 @@
+
+
 body {
-    background: rgb(125, 198, 205);
+    background: rgb(#9ce149);
     color: rgb(45, 45, 45);
     padding: 10px;
     font-family: arial;
@@ -11,8 +13,9 @@ body {
 
 /* navigation menu */
 nav {
-    background: rgb(239, 80, 41);
+   /* background: rgb(239, 80, 41); */
    margin: 0 auto;
+   margin-bottom: 20px;
     display: flex;
     padding: 10px;
 }
@@ -36,10 +39,7 @@ a {
 }
 
 /* main container area beneath menu */
-main {
-    background: rgb(245, 238, 219);
-    display: flex;
-}
+
 .sidebar {
     margin-right: 25px;
     padding: 10px;
@@ -60,3 +60,14 @@ main {
 h2, h3 {
     margin: 0px;
 }
+
+h2 {color:white;
+font-family:cursive}
+
+.text {
+    color: hsl(0, 0%, 100%);
+    text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+    font-family: fantasy;
+}
+
+
