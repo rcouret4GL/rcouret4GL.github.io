@@ -90,10 +90,15 @@ font-family:cursive}
 }
 
 .portnav {
-    background: linear-gradient(90deg,rgb(34, 4, 4) 1%,rgb(82, 2, 1) 50%);
+    background: #370617;
     margin: 0 auto;
     margin-bottom: 20px;
      display: flex;
-     padding: 10px;
+     padding: 20px;
      text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
- }
+     width: 98%;
+     align-self: center;
+}
+     
+
+ body{background-color: #510513; }
