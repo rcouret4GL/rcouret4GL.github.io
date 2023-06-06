@@ -17,7 +17,71 @@ body {
 </head>
 
 <body>
+<div class = "scripting"> 
+    <!-- scripting goes here -->
+    <script> 
+    // what this function does: when it recieves activation, runs commands
+function buttonclick(button){
+    // creates a variate that makes a random number between 0 and 10
+    // math.floor removes the decimal
+    var randomNumber = Math.floor(Math.random()*10);
 
+    var randomMessage = Math.floor(Math.random()*3);
+// asks for name
+    var nameCheck = prompt("Please enter your name.");
+
+    // function that, if value given is equal to "" (which is no imput)
+    // it asks to reinput the value
+    function disallowNilName(checkNameFunction){
+    if (checkNameFunction === ""){var nameCheck2 = prompt("Please enter a valid name."); 
+  disallowNilName(nameCheck2);
+}
+    }
+// calls function
+disallowNilName(nameCheck)
+
+//rng generator, for each value that rng produces, gives a certain message
+    if (randomMessage === 0) {
+        window.alert("Please wait.. Manifesting")   
+    }
+    else if (randomMessage === 1 ) {
+        window.alert("Please hold.. Aligning stars")
+    }
+    else if (randomMessage === 2 ) {
+        window.alert("Your patience is appreciated. Correlating star patterns..")
+    }
+    else if (randomMessage === 3 ) {
+        window.alert("Please wait while your luck is being tested..")
+    }
+    function timer(){
+        console.log("Timer Finished")
+// if rng is equal to 1 then
+    if (randomNumber === 1) {
+        window.alert("Your luck is atrocious. Don't take any risks today.")
+    };
+    // if rng is less than or equal to 3 then.. then if it is not 1
+    if (randomNumber <= 3) {
+        if (randomMessage !== 1) {window.alert("Your luck is poor today. Be viligant.")}
+    };
+}
+// waits a certain amount of time, then calls function
+var timeToWait = (randomNumber+1)*1000
+setTimeout(timer,timeToWait)
+
+function destroybutton(){
+    // i don't know how to destroy an object
+}
+destroybutton()
+    
+}
+
+
+
+    </script>
+<!-- what this does: when the button is pressed, it calls the buttonclick function 
+and the (this) tells the function which button it is-->
+    <button id = "button", onclick="buttonclick(this)">Click here to test your luck!!!</button>
+</div>
     
     <nav>
         <h1> Robert's Homepage</h1>
@@ -29,6 +93,7 @@ body {
 
 <main> 
     <div id ="all-contents">
+      
     <!-- for storing visual content -->
 
 
@@ -40,7 +105,6 @@ body {
 
 <h3 class ="text">Interests</h3> 
 <ul>
-
 <li class ="text">Food (favorite food medium-rare steak) </li>
 <li class ="text">Sleep (i don't get any)</li>
 <li class ="text">Chess (favorite opening sicillian defense)</li>

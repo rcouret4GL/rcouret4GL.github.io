@@ -102,3 +102,15 @@ font-family:cursive}
      
 
  body{background-color: #510513; }
+
+ #portfolio {background: #370617;
+width:fit-content;
+padding: 30px;}
+
+#button { padding: 10px;
+margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%); bottom:-800px;;} 
