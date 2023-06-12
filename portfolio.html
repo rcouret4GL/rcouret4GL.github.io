@@ -4,35 +4,132 @@
     <!-- metadata goes here --> 
     <link rel = "stylesheet" href="style.css">
 <title> robert's portfolio (goated) </title> 
-
+<style> 
+ body{ background-image: url(https://stormandsky.com/gif/14.gif); }
+ div {
+    overflow: hidden;
+ }
+</style>
 
 </head>
 
 <body>
-   
+    <div class = "scripting"> 
+        <!-- scripting goes here -->
+        <script> 
+    
+        
+        // what this function does: when it recieves activation, runs commands
+    function buttonclick(button){
+    
+        function destroybutton(){
+        // i don't know how to destroy an object
+        var x = document.getElementById("button");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    
+    }
+    //destroybutton()
+    
+        // creates a variate that makes a random number between 0 and 10
+        // math.floor removes the decimal
+        var randomNumber = Math.floor(Math.random()*11);
+        console.log(randomNumber)
+        if (randomNumber === 0) {
+            randomNumber = 1
+        }
+    
+        var randomMessage = Math.floor(Math.random()*3);
+    // asks for name
+        var nameCheck = prompt("Please enter your name.");
+    
+        // function that, if value given is equal to "" (which is no imput)
+        // it asks to reinput the value
+        function disallowNilName(checkNameFunction){
+        if (checkNameFunction === ""){var nameCheck2 = prompt("Please enter a valid name."); 
+      disallowNilName(nameCheck2);
+    }
+        }
+    // calls function
+    disallowNilName(nameCheck)
+    
+    //rng generator, for each value that rng produces, gives a certain message
+        if (randomMessage === 0) {
+            window.alert("Please wait.. Manifesting")   
+        }
+        else if (randomMessage === 1 ) {
+            window.alert("Please hold.. Aligning stars")
+        }
+        else if (randomMessage === 2 ) {
+            window.alert("Your patience is appreciated. Correlating star patterns..")
+        }
+        else if (randomMessage === 3 ) {
+            window.alert("Please wait while your luck is being tested..")
+        }
+        function timer(){
+            console.log("Timer Finished")
+    // if rng is equal to 1 then
+        if (randomNumber === 1) {
+            window.alert("Your luck is atrocious. Don't take any risks today.")
+        };
+        // if rng is less than or equal to 3 then.. then if it is not 1
+        if (randomNumber <= 3) {
+            if (randomNumber !== 1) {window.alert("Your luck is poor today. Be viligant.")}
+        };
+    
+        if (randomNumber <= 5) {
+            if (randomNumber >3) {window.alert("Your luck is pretty normal today.")}
+        };
+    
+        if (randomNumber <= 7) {
+            if (randomNumber > 5) {window.alert("Your luck is pretty good!")}
+        };
+    
+        if (randomNumber <= 9) {
+            if (randomNumber > 7) {window.alert("Your luck is amazing! Today is your lucky day!")}
+        };
+    
+        if (randomNumber >= 10) {
+            if (randomNumber <= 10) {window.alert("Your luck is perfect! Go play the lottery or something.")}
+        };
+    }
+    // waits a certain amount of time, then calls function
+    var timeToWait = (randomNumber+1)*1000
+    setTimeout(timer,timeToWait)
+    
+    
+        
+    }
+    
+    
+    
+        </script>
+    <!-- what this does: when the button is pressed, it calls the buttonclick function 
+    and the (this) tells the function which button it is-->
+        <button id = "button", onclick="buttonclick(this)">Click here to test your luck!!!</button>
+    </div>
      <!-- content goes here --> 
      <div id = "allcontents"> 
-        <nav class = "portnav">
-        <h1> Robert's Portfolio Page</h1>
-        <li class="nav-li">
-            <a class="nav-a" href="index.html">Home</a>
-        </li>
-        <li class ="nav-li">
-            <a class="nav-a" href="portfolio.html">Portfolio</a>
-
-        </li>
-
-
+        <nav>
+            <h1> Robert's Portfolio</h1>
+            <ul id="nav-ul">
+                <li class="nav-li"> <a href="index.html">|Home|</a> </li>
+                <li class="nav-li"><a href="portfolio.html">|Portfolio|</a></li>
+            </ul>
         </nav>
         <main>
-            <div class="content"> <h1> Portfolio </h1> 
-            <ul id ="portfolio">
+            <div class="content"> <h1 class = "augh"> Portfolio </h1> 
+            <ul class ="portfolios">
                 <!-- PROJECTS -->
-                <li><a href="projects/platformer/">Platformer : A cannon - dodging, collectible - grabbing adventure game for Halleb0t</a></li>
+                <li><a href="projects/platformer/">Platformer</a></li>
 
-                <li><a href="projects/bouncing-box/">Bouncing Box : A project that gives you a taste of game development on the web </a></li>
-
-                <li><a href="projects/circularity/">Circularity : A motion poem using random number generation and velocity applied to circle shapes...</a></li>
+                <li> </li>
+                <li><a href="projects/bouncing-box/">Bouncing Box</a></li>
+<li> </li>
+                <li><a href="projects/circularity/">Circularity</a></li>
             </ul>
             </div>
         </main>
@@ -40,3 +137,5 @@
     </body>
 
 </html>
+
+

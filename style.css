@@ -1,4 +1,10 @@
-
+#button { padding: 10px;
+    margin: 0;
+      position: relative;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translateX(-50%);
+      transform: translateX(-50%); bottom:-800px;;} 
 
 body {
     background: rgb(#9ce149);
@@ -17,8 +23,9 @@ nav {
    margin: 0 auto;
    margin-bottom: 20px;
     display: flex;
-    padding: 10px;
+    padding: 0px;
     text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+
 }
 h1 {
     display: flex;
@@ -29,16 +36,25 @@ h1 {
 }
 #nav-ul {
     list-style-image: none;
+   
 }
+
+
 .nav-li {
     display: inline-block;
-    padding: 0 10px;
+    padding: -0px;
+  
 }
+.nav-lifix{
+    display: inline-block;
+    padding: 0px;
+bottom: 31;}
 
 a {
     text-decoration: none;
     color: #fff;
 }
+
 
 /* main container area beneath menu */
 
@@ -58,6 +74,17 @@ a {
 #interests {
     border: 3px silver ridge;
     padding: 8px;
+   /*width: 150px;*/
+}
+
+.portfolios {
+    border: 3px silver ridge;
+    padding: 12px;
+    font-size: xx-large;
+    font-family: monospace;
+    width:fit-content;
+    transform: translateX(800px);  
+    list-style: none;
    /*width: 150px;*/
 }
 h2, h3 {
@@ -107,10 +134,6 @@ font-family:cursive}
 width:fit-content;
 padding: 30px;}
 
-#button { padding: 10px;
-margin: 0;
-  position: relative;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translateX(-50%);
-  transform: translateX(-50%); bottom:-800px;;} 
+.augh{transform: translateX(820px); flex: 1;
+    padding: 15px; }
+

@@ -7,14 +7,46 @@ function registerSetup(setup) {
   setupGame = setup;
 }
 
+var rng = (Math.floor(Math.random()*5))
 function main() {
   ctx.clearRect(0, 0, 1400, 750); //erase the screen so you can draw everything in it's most current position
 
   if (player.deadAndDeathAnimationDone) {
-    deathOfPlayer();
+    deathOfPlayer(rng);
     return;
   }
+  const result = collectables.every(obj => obj.collected === true);
 
+  if (result) {
+    ctx.fillStyle = "grey";
+
+  ctx.fillRect(
+    canvas.width / 4,
+    canvas.height / 6,
+    canvas.width / 2,
+    canvas.height / 2
+    
+  );
+  ctx.fillStyle = "black";
+  ctx.font = "800% serif";
+  ctx.fillText(
+    "You win!",
+    canvas.width / 4,
+    canvas.height / 6 + canvas.height / 5,
+    (canvas.width / 16) * 14
+  );
+  ctx.font = "500% serif";
+  ctx.fillText(
+    "Good Job!",
+    canvas.width / 4,
+canvas.height / 6 + canvas.height / 3,
+    (canvas.width / 16) * 14
+  );
+    setTimeout(() => {
+      location.reload();
+    }
+      , 1500);
+  }
   drawPlatforms();
   drawProjectiles();
   drawCannons();
@@ -357,7 +389,7 @@ function projectileCollision() {
   }
 }
 
-function deathOfPlayer() {
+function deathOfPlayer(rng) {
   ctx.fillStyle = "grey";
   ctx.fillRect(
     canvas.width / 4,
@@ -367,12 +399,41 @@ function deathOfPlayer() {
   );
   ctx.fillStyle = "black";
   ctx.font = "800% serif";
-  ctx.fillText(
-    "You are dead",
+  if (rng === 0) {ctx.fillText(
+    "You're dead!",
     canvas.width / 4,
-    canvas.height / 6 + canvas.height / 5,
-    (canvas.width / 16) * 14
-  );
+    canvas.height / 6 + canvas.height / 8,
+    (canvas.width / 16) * 4
+  );}
+ if (rng ===1) {ctx.fillText(
+  "Try harder!",
+  
+  canvas.width / 4,
+  canvas.height / 6 + canvas.height / 8,
+  (canvas.width / 16)  *4
+);}
+
+if (rng ===2) {ctx.fillText(
+  "Embarassing!",
+  canvas.width / 4,
+  canvas.height / 6 + canvas.height / 8,
+  (canvas.width / 16) * 4
+);}
+
+if (rng ===3) {ctx.fillText(
+  "How are you dying so fast?",
+  canvas.width / 4,
+  canvas.height / 6 + canvas.height / 8,
+  (canvas.width / 16) * 4
+);}
+
+if (rng ===4) {ctx.fillText(
+  "This is sad.",
+  canvas.width / 4,
+  canvas.height / 6 + canvas.height / 8,
+  (canvas.width / 16) * 4
+);}
+
   ctx.font = "500% serif";
   ctx.fillText(
     "Hit any key to restart",
@@ -411,14 +472,12 @@ function playerFrictionAndGravity() {
 
 function drawPlatforms() {
   for (var i = 0; i < platforms.length; i++) {
-    ctx.fillStyle = "grey";
-    ctx.fillRect(
-      platforms[i].x,
+    
+    ctx.drawImage(platformImage, platforms[i].x,
       platforms[i].y,
       platforms[i].width,
-      platforms[i].height
-    );
-  }
+      platforms[i].height);
+    }
 }
 
 function drawProjectiles() {
@@ -517,6 +576,7 @@ function collectablesCollide() {
       collectables[i].y + collectableHeight > player.y
     ) {
       collectables[i].collected = true;
+      console.log(i)
     }
   }
 }
@@ -524,6 +584,8 @@ function collectablesCollide() {
 function createPlatform(x, y, width, height) {
   platforms.push({ x, y, width, height });
 }
+
+
 
 function createCannon(
   wallLocation,

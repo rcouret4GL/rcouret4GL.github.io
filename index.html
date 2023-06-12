@@ -2,7 +2,8 @@
 <html>
     <!-- palletes: #2b1C2F #143F46 #2A69SE #808171 #C8989A-->
 
-<head> 
+<head>  
+
     <!-- for storing metadata --> 
     <title> robert's homepage (goated) </title>
 
@@ -14,17 +15,37 @@ body {
 }
 </style>
 
+
 </head>
 
 <body>
 <div class = "scripting"> 
     <!-- scripting goes here -->
     <script> 
+
+    
     // what this function does: when it recieves activation, runs commands
 function buttonclick(button){
+
+    function destroybutton(){
+    // i don't know how to destroy an object
+    var x = document.getElementById("button");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+}
+//destroybutton()
+
     // creates a variate that makes a random number between 0 and 10
     // math.floor removes the decimal
-    var randomNumber = Math.floor(Math.random()*10);
+    var randomNumber = Math.floor(Math.random()*11);
+    console.log(randomNumber)
+    if (randomNumber === 0) {
+        randomNumber = 1
+    }
 
     var randomMessage = Math.floor(Math.random()*3);
 // asks for name
@@ -61,17 +82,30 @@ disallowNilName(nameCheck)
     };
     // if rng is less than or equal to 3 then.. then if it is not 1
     if (randomNumber <= 3) {
-        if (randomMessage !== 1) {window.alert("Your luck is poor today. Be viligant.")}
+        if (randomNumber !== 1) {window.alert("Your luck is poor today. Be viligant.")}
+    };
+
+    if (randomNumber <= 5) {
+        if (randomNumber >3) {window.alert("Your luck is pretty normal today.")}
+    };
+
+    if (randomNumber <= 7) {
+        if (randomNumber > 5) {window.alert("Your luck is pretty good!")}
+    };
+
+    if (randomNumber <= 9) {
+        if (randomNumber > 7) {window.alert("Your luck is amazing! Today is your lucky day!")}
+    };
+
+    if (randomNumber >= 10) {
+        if (randomNumber <= 10) {window.alert("Your luck is perfect! Go play the lottery or something.")}
     };
 }
 // waits a certain amount of time, then calls function
 var timeToWait = (randomNumber+1)*1000
 setTimeout(timer,timeToWait)
 
-function destroybutton(){
-    // i don't know how to destroy an object
-}
-destroybutton()
+
     
 }
 
@@ -86,8 +120,8 @@ and the (this) tells the function which button it is-->
     <nav>
         <h1> Robert's Homepage</h1>
         <ul id="nav-ul">
-            <li class="nav-li"> <a href="index.html">Home</a> </li>
-            <li class="nav-li"><a href="portfolio.html">Portfolio</a></li>
+            <li class="nav-li"> <a href="index.html">|Home|</a> </li>
+            <li class="nav-li"><a href="portfolio.html">|Portfolio|</a></li>
         </ul>
     </nav>
 
