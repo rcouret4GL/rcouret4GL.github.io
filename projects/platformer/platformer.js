@@ -22,6 +22,8 @@ $(function () {
     createPlatform(-50, -50, 50, canvas.height + 500); //bottom
     createPlatform(canvas.width, -50, 50, canvas.height + 100); //left
 
+
+
     /**
      * Uncomment the loops below to add a "grid" to your platformer game's screen
      * The grid will place both horizontal and vertical platforms incremented 100 pixels apart
@@ -90,9 +92,9 @@ createPlatform(1200, 600, 100, 400)
 
 createCollectable("coin", 1230,500, 0.1, 1);
 
-createCollectable("necklace", 1360, 58, false )
+createCollectable("coin", 1360, 58, false )
 
-createCollectable("money", 400, 180, false)
+createCollectable("coin", 400, 180, false)
 
 
     // TODO 3
@@ -106,6 +108,9 @@ createCannon("left",300,1200,40,40)
 
 createCannon("right",800,5,30,3)
 
+createCannon("bottom",770,4000,200,20)
+
+createCannon("bottom",180,4000,200,20)
     /////////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
     /////////////////////////////////////////////////

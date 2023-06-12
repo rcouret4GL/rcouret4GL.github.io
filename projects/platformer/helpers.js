@@ -3,6 +3,7 @@
 ///////////////////////////////////////////////
 // Core functionality /////////////////////////
 ///////////////////////////////////////////////
+
 function registerSetup(setup) {
   setupGame = setup;
 }
@@ -390,6 +391,9 @@ function projectileCollision() {
 }
 
 function deathOfPlayer(rng) {
+const myAudio = new Audio("/workspace/rcouret4GL.github.io/projects/platformer/soundEffects/boom.mp3")
+  myAudio.play()
+  
   ctx.fillStyle = "grey";
   ctx.fillRect(
     canvas.width / 4,
@@ -476,9 +480,11 @@ function drawPlatforms() {
     ctx.drawImage(platformImage, platforms[i].x,
       platforms[i].y,
       platforms[i].width,
-      platforms[i].height);
+      platforms[i].height)
     }
 }
+
+
 
 function drawProjectiles() {
   for (var i = 0; i < projectiles.length; i++) {
@@ -498,12 +504,15 @@ function drawCannons() {
   for (var i = 0; i < cannons.length; i++) {
     if (cannons[i].projectileCountdown >= cannons[i].timeBetweenShots) {
       cannons[i].projectileCountdown = 0;
+     
       createProjectile(
         cannons[i].location,
         cannons[i].x,
         cannons[i].y,
         cannons[i].projectileWidth,
-        cannons[i].projectileHeight
+        cannons[i].projectileHeight,
+  
+        
       );
     } else {
       cannons[i].projectileCountdown = cannons[i].projectileCountdown + 1;
@@ -584,6 +593,8 @@ function collectablesCollide() {
 function createPlatform(x, y, width, height) {
   platforms.push({ x, y, width, height });
 }
+
+
 
 
 

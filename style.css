@@ -134,6 +134,9 @@ font-family:cursive}
 width:fit-content;
 padding: 30px;}
 
-.augh{transform: translateX(820px); flex: 1;
+.augh{transform: translateX(810px); flex: 1;
     padding: 15px; }
 
+    .augh2{transform: translateX(775px); flex: 1;
+        padding: 15px; }
+    
