@@ -102,15 +102,15 @@ createCollectable("coin", 400, 180, false)
     // You must decide the wall you want the cannon on, the position on the wall, and the time between shots in milliseconds
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay, width, height)
-createCannon("right",111,3000,80,80)
+createCannon("right",111,3000,80,80,true)
 
-createCannon("left",300,1200,40,40)
+createCannon("left",300,1200,40,40,true)
 
-createCannon("right",800,5,30,3)
+createCannon("right",800,5,30,3,false)
 
-createCannon("bottom",770,4000,200,20)
+createCannon("bottom",770,4000,200,20,true)
 
-createCannon("bottom",180,4000,200,20)
+createCannon("bottom",180,4000,200,20,true)
     /////////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
     /////////////////////////////////////////////////

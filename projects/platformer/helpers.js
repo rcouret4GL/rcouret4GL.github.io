@@ -232,7 +232,7 @@ function animate() {
 }
 
 function drawRobot() {
-  //ctx.drawImage(imageVaribale, sourceY, SourceX, sourceWidth, sourceHeight, canvasX, canvasY, finalWidth, finalHeight)
+  //ctx.drawImage(imageVaribale, sourceY, SourceX, sourceWidxth, sourceHeight, canvasX, canvasY, finalWidth, finalHeight)
   //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
   //you only need the extra four source arguments if you want to display just a portion of the picture; if you want to show the whole picture you can just do drawImage(imageVar, canvasX, canvasY, width, height)
 
@@ -389,11 +389,11 @@ function projectileCollision() {
     }
   }
 }
+let sound1 = new Audio('soundEffects/wah.mp3')
+
 
 function deathOfPlayer(rng) {
-const myAudio = new Audio("/workspace/rcouret4GL.github.io/projects/platformer/soundEffects/boom.mp3")
-  myAudio.play()
-  
+  sound1.play()
   ctx.fillStyle = "grey";
   ctx.fillRect(
     canvas.width / 4,
@@ -488,6 +488,7 @@ function drawPlatforms() {
 
 function drawProjectiles() {
   for (var i = 0; i < projectiles.length; i++) {
+
     ctx.drawImage(
       projectileImage,
       projectiles[i].x,
@@ -497,6 +498,7 @@ function drawProjectiles() {
     );
     projectiles[i].x = projectiles[i].x + projectiles[i].speedX;
     projectiles[i].y = projectiles[i].y + projectiles[i].speedY;
+    
   }
 }
 
@@ -505,12 +507,15 @@ function drawCannons() {
     if (cannons[i].projectileCountdown >= cannons[i].timeBetweenShots) {
       cannons[i].projectileCountdown = 0;
      
+      
       createProjectile(
         cannons[i].location,
         cannons[i].x,
         cannons[i].y,
         cannons[i].projectileWidth,
         cannons[i].projectileHeight,
+        cannons[i].timeBetweenShots,
+      
   
         
       );
@@ -603,7 +608,8 @@ function createCannon(
   position,
   timeBetweenShots,
   width = defaultProjectileWidth,
-  height = defaultProjectileHeight
+  height = defaultProjectileHeight,
+  condition,
 ) {
   if (wallLocation === "top") {
     cannons.push({
@@ -615,6 +621,7 @@ function createCannon(
       timeBetweenShots: timeBetweenShots / (1000 / frameRate),
       projectileWidth: width,
       projectileHeight: height,
+      condition: condition,
     });
   } else if (wallLocation === "bottom") {
     cannons.push({
@@ -626,6 +633,7 @@ function createCannon(
       timeBetweenShots: timeBetweenShots / (1000 / frameRate),
       projectileWidth: width,
       projectileHeight: height,
+      condition: condition,
     });
   } else if (wallLocation === "left") {
     cannons.push({
@@ -637,6 +645,7 @@ function createCannon(
       timeBetweenShots: timeBetweenShots / (1000 / frameRate),
       projectileWidth: width,
       projectileHeight: height,
+      condition: condition,
     });
   } else if (wallLocation === "right") {
     cannons.push({
@@ -648,6 +657,7 @@ function createCannon(
       timeBetweenShots: timeBetweenShots / (1000 / frameRate),
       projectileWidth: width,
       projectileHeight: height,
+      condition: condition,
     });
   }
 }
@@ -669,14 +679,35 @@ function createCollectable(type, x, y, gravity = 0.1, bounce = 1) {
     });
   }
 }
-
-function createProjectile(wallLocation, x, y, width, height) {
+let alreadytriggered = false
+let myAudio = new Audio('soundEffects/boom.mp3')
+myAudio.volume = (0.4)
+var a = 0
+function createProjectile(wallLocation, x, y, width, height, timeBetweenShots) {
+  
   //checking if the player is dead
+
+  function deadsound () {
+    if (alreadytriggered === false) { alreadytriggered = true
+myAudio.play() }
+  }
+
   if (currentAnimationType === animationTypes.frontDeath) {
+    console.log("dead")
+    
+    a = a+1
+    console.log(a)
+    if (a === 20) {deadsound()}
     return;
   }
 
-  if (wallLocation === "top") {
+  function lasersound () {
+var shootsound = new Audio("soundEffects/laser.mp3")
+shootsound.volume = (0.3)
+shootsound.play()
+  }
+
+  if (wallLocation === "top") {if (timeBetweenShots != 5) { lasersound()}
     projectiles.push({
       x: x - 71.5,
       y: y - 55 - height / 2,
@@ -685,7 +716,7 @@ function createProjectile(wallLocation, x, y, width, height) {
       width,
       height,
     });
-  } else if (wallLocation === "bottom") {
+  } else if (wallLocation === "bottom") { if (timeBetweenShots != 5) { lasersound()}
     projectiles.push({
       x: x + 47,
       y: y + 50 + height / 2,
@@ -694,7 +725,7 @@ function createProjectile(wallLocation, x, y, width, height) {
       width,
       height,
     });
-  } else if (wallLocation === "left") {
+  } else if (wallLocation === "left") {if (timeBetweenShots != 5) { lasersound()}
     projectiles.push({
       x: x - 80 - width / 2,
       y: y + 46,
@@ -703,7 +734,7 @@ function createProjectile(wallLocation, x, y, width, height) {
       width,
       height,
     });
-  } else if (wallLocation === "right") {
+  } else if (wallLocation === "right") {if (timeBetweenShots != 0.3) {console.log(timeBetweenShots); lasersound()}
     projectiles.push({
       x: x + 40 + width / 2,
       y: y - 71.5,
