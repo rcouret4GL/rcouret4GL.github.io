@@ -50,7 +50,7 @@
 <body class="board">
 	<h1 id = "score"> score: 0 </h1>
 	<h1 id = "combo"> COMBO: 1x </h1>
-	<!-- <h1 id = "lives"> ❤️❤️❤️ </h1> -->
+	<h1 id = "lives"> ❤️❤️❤️ </h1>
 	<!-- HTML for the box -->
 	<div class="box">:)</div>
 
@@ -72,11 +72,34 @@
 			// Every 50 milliseconds, call the update Function (see below)
 			var interval = setInterval(update, 1);
 
+			var activated = true
 			function endGame () {clearInterval(interval);}
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
+			board.on('click', handleBoardClick);
 			box.on('click', handleBoxClick);
-			
+
+			//
+			var numOfClicks = 0
+			function handleBoardClick(event) {
+				var boxClass = event.target.classList[0];
+				if (boxClass === "box") {
+					return;
+				}
+				console.log(numOfClicks)
+				if (numOfClicks === 0) {document.getElementById("lives").textContent = "❤️❤️"}
+				else if (numOfClicks === 1) {document.getElementById("lives").textContent = "❤️"}
+				else if (numOfClicks === 2) {
+					 document.getElementById("lives").textContent = "You died!"
+							clearInterval(interval)
+							activated = false
+							changeBoxText("X-X")
+						}
+					numOfClicks = numOfClicks+1
+					
+				}
+
+			//
 
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX) {
@@ -172,7 +195,9 @@
 			var combo = 1
 			var comboTime = new Date();
 			//
-			function handleBoxClick() {
+			function handleBoxClick(event) {
+				if (activated == true) {
+				//console.log(event.target);
 				clickedBox = true
 				var crit = false
 
@@ -260,6 +285,7 @@
 							
 						}
 					}
+				
 				//
 				
 				
@@ -316,29 +342,22 @@
 							console.log(timePassed)
 						
 						}, 990
-				
+					
 						)
+						
 					}
-
-					function handleBoardClick() {
-						console.log("checking..")
-						var boxClicked = false
-						box.on('click,',boxClicked = true)
-						if (boxClicked == false) {console.log("clicked board?")}
 					
 					
-				}
-
 				
 				
 				
-					 board.on('click', handleBoardClick)
+					 
 					
 					
 			colorCycle()
 colorCycleReverse()
 			};
-		})();
+		}})();
 	</script>
 </body>
 </html>
