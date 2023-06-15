@@ -19,6 +19,7 @@
 			position: absolute;
 			top: 100px;
 			left: 1;  /* <--- Change me! */
+			
 	
 			
 		}
@@ -31,9 +32,16 @@
 			font-family: monospace;
 		}
 		#combo{
-			color: aliceblue;
+			color: rgb(240, 248, 255);
 			text-align: center;
 			font-family: monospace;
+		}
+		#lives {
+			color:aliceblue;
+			text-align: right;
+			position: fixed;
+			top:-20px
+			
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -42,6 +50,7 @@
 <body class="board">
 	<h1 id = "score"> score: 0 </h1>
 	<h1 id = "combo"> COMBO: 1x </h1>
+	<!-- <h1 id = "lives"> ❤️❤️❤️ </h1> -->
 	<!-- HTML for the box -->
 	<div class="box">:)</div>
 
@@ -61,10 +70,13 @@
 			
 
 			// Every 50 milliseconds, call the update Function (see below)
-			setInterval(update, 1);
+			var interval = setInterval(update, 1);
+
+			function endGame () {clearInterval(interval);}
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
+			
 
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX) {
@@ -86,13 +98,16 @@
 
 			var score = 0
 
+			var clickedBox = false
 			var positionX = 1
 			var positionY = 1
 			var points = 0
 			var speed = 0.5
-			var multiplier = 1.05
+			var multiplier = 1.01
 			var mode = "normal"
 			var yMode = "normal"
+
+			var lives = 3
 			
 			var startTime = new Date();
 			/* 
@@ -105,6 +120,8 @@
 			bounce.volume = (0.15)
 			var bounce2 = new Audio("sounds/bounce3b.mp3")
 			bounce2.volume = (0.15)
+			var comboSound = new Audio("sounds/combo2.mp3")
+			
 			
 			function update() {
 				
@@ -120,6 +137,7 @@
 				if (mode === "normal") {positionX = positionX+speed,
 				moveBoxTo(positionX)}
 				else {
+					
 					positionX = positionX-speed,
 					moveBoxTo(positionX);
 				}
@@ -155,6 +173,8 @@
 			var comboTime = new Date();
 			//
 			function handleBoxClick() {
+				clickedBox = true
+				var crit = false
 
 				var speedcalc = (speed*0.1)+1
 				var finalcalc = speedcalc.toFixed(1);
@@ -163,7 +183,7 @@
 				var calc2 = (endTime2-startTime)/1000
 
 				console.log("endTime-comboTime ="+(calc2))
-				if (calc2 < 0.7) {combo = combo*2}
+				if (calc2 < 0.7) {combo = combo*2, comboSound.play(), crit = true;}
 				else {combo = (finalcalc)}
 				
 				var comboTime = new Date();
@@ -171,6 +191,8 @@
 				var truescore = score.toFixed(0);
 				document.getElementById("score").textContent = "score: "+truescore;
 				document.getElementById("combo").textContent = "COMBO: "+combo+("x");
+				document.getElementById("combo").style.color = "aliceblue";
+				if (crit == true) {document.getElementById("combo").style.color = "red";}
 
 				mode = "normal"
 				//positionX = 1
@@ -182,8 +204,8 @@
 				
 
 				function reversal() {
-					if (mode == "normal") {mode = "reverse", yMode= "reverse",bounce.play}
-					else (mode = "normal", yMode = "normal",bounce.play)
+					if (mode == "normal") {mode = "reverse", yMode= "reverse",bounce.play()}
+					else (mode = "normal", yMode = "normal",bounce.play())
 					console.log(mode)
 				}
 				function randomizePosition(){
@@ -298,6 +320,21 @@
 						)
 					}
 
+					function handleBoardClick() {
+						console.log("checking..")
+						var boxClicked = false
+						box.on('click,',boxClicked = true)
+						if (boxClicked == false) {console.log("clicked board?")}
+					
+					
+				}
+
+				
+				
+				
+					 board.on('click', handleBoardClick)
+					
+					
 			colorCycle()
 colorCycleReverse()
 			};
