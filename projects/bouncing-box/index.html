@@ -25,13 +25,23 @@
 		.board{
 			height: 100vh;
 		}
-	
+		#score{
+			color: aliceblue;
+			text-align: center;
+			font-family: monospace;
+		}
+		#combo{
+			color: aliceblue;
+			text-align: center;
+			font-family: monospace;
+		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
 </head>
 <body class="board">
-
+	<h1 id = "score"> score: 0 </h1>
+	<h1 id = "combo"> COMBO: 1x </h1>
 	<!-- HTML for the box -->
 	<div class="box">:)</div>
 
@@ -48,6 +58,7 @@
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
 			var boardHeight = jQuery(window).height();
+			
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 1);
@@ -73,7 +84,7 @@
 			
 			// TODO 2 - Variable declarations 
 
-			
+			var score = 0
 
 			var positionX = 1
 			var positionY = 1
@@ -89,11 +100,16 @@
 			it should move the Box to a new location. If the box drifts off the screen
 			turn it around! 
 			*/
-			var bounce = new Audio("sounds/bounce2.mp3")
+			
+			var bounce = new Audio("sounds/bounce3.mp3")
+			bounce.volume = (0.15)
+			var bounce2 = new Audio("sounds/bounce3b.mp3")
+			bounce2.volume = (0.15)
 			
 			function update() {
 				
 				function xCollision() {
+					
 				if (positionX <=10 || positionX > boardWidth-10) {yMode = "normal",bounce.play()} if (positionX >= (boardWidth-40)|| positionX <= 0) {
 					console.log(positionX)
 					if (mode == "reverse") {mode = "normal",bounce.play()}
@@ -110,9 +126,9 @@
 			}
 
 				function yCollision()
-				{	if (positionY <=10 || positionY> boardHeight-10) {yMode = "normal",bounce.play()} else if (positionY >= (boardHeight-40)|| positionY <= 0) {
+				{	if (positionY <=10 || positionY> boardHeight-10) {yMode = "normal",bounce2.play()} else if (positionY >= (boardHeight-40)|| positionY <= 0) {
 					console.log(positionY)
-					if (yMode == "reverse") {mode = "normal",bounce.play()}
+					if (yMode == "reverse") {mode = "normal",bounce2.play()}
 					else {yMode = "reverse",bounce.play()}
 					console.log("bounce!(Y)")
 				}
@@ -134,7 +150,28 @@
 			the left side of the screen.
 			*/
 			
+			//
+			var combo = 1
+			var comboTime = new Date();
+			//
 			function handleBoxClick() {
+
+				var speedcalc = (speed*0.1)+1
+				var finalcalc = speedcalc.toFixed(1);
+				
+				var endTime2 = new Date()
+				var calc2 = (endTime2-startTime)/1000
+
+				console.log("endTime-comboTime ="+(calc2))
+				if (calc2 < 0.7) {combo = combo*2}
+				else {combo = (finalcalc)}
+				
+				var comboTime = new Date();
+				score = (score+1)*combo;
+				var truescore = score.toFixed(0);
+				document.getElementById("score").textContent = "score: "+truescore;
+				document.getElementById("combo").textContent = "COMBO: "+combo+("x");
+
 				mode = "normal"
 				//positionX = 1
 				//positionY = 1
@@ -142,10 +179,11 @@
 				changeBoxText(points);
 				speed = multiplier*(speed)
 
+				
 
 				function reversal() {
-					if (mode == "normal") {mode = "reverse", yMode= "reverse"}
-					else (mode = "normal", yMode = "normal")
+					if (mode == "normal") {mode = "reverse", yMode= "reverse",bounce.play}
+					else (mode = "normal", yMode = "normal",bounce.play)
 					console.log(mode)
 				}
 				function randomizePosition(){
