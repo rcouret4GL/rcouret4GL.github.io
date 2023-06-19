@@ -21,14 +21,23 @@ var init = function (window) {
         
         // TODO 1 : Declare and initialize our variables
 
+        var circle ;
+        var circles = [];
 
         // TODO 2 : Create a function that draws a circle 
-        
+        function drawCircle() {circle = draw.randomCircleInArea(canvas, true, true, "#999", 2);
+        physikz.addRandomVelocity(circle, canvas, 10, 10);
+        view.addChild(circle);
+        circles.push(circle);
+        }
 
         // TODO 3 / 7 : Call the drawCircle() function 
-
-
-        ////////////////////////////////////////////////////////////
+        var complete100Circles = 0
+        while (complete100Circles !== 100) {complete100Circles++;
+        drawCircle()
+        }
+// while complete100Circles is not 100, add 1 to the variable and also draw circle
+;        ////////////////////////////////////////////////////////////
         ///////////////// PROGRAM LOGIC ////////////////////////////
         ////////////////////////////////////////////////////////////
         
@@ -36,10 +45,16 @@ var init = function (window) {
         This Function is called 60 times/second producing 60 frames/second.
         In each frame, for every circle, it should redraw that circle
         and check to see if it has drifted off the screen.         
-        */
+        */ 
         function update() {
             // TODO 4 : Update the circle's position //
-
+            for (var i = 0; i < circles.length; i++ ) {
+                game.checkCirclePosition(circles[i]); //for every circle, do this
+                physikz.updatePosition(circles[i])
+            
+            }
+        }
+            //deleted cuz broke DRY rule
             
             // TODO 5 / 10 : Call game.checkCirclePosition() on your circles.
            
@@ -47,7 +62,7 @@ var init = function (window) {
             // TODO 9 : Iterate over the array
            
             
-        }
+            
     
         /* 
         This Function should check the position of a circle that is passed to the 
@@ -58,9 +73,19 @@ var init = function (window) {
 
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
             if ( circle.x > canvas.width ) {
-                circle.x = 0;
+                circle.x = 0; // if circle's x position goes past the canvas(to the right), teleports back to 0
             }
-            
+            if (circle.x < 0 ) {
+                circle.x = canvas.width; //if circle's x position goes past the canvas(to the left), teleport to furthest distance
+            }
+
+            if (circle.y < 0 ) {
+                circle.y = canvas.width;
+            }
+
+            if ( circle.y > canvas.width ) {
+                circle.y = 0
+            }
             // TODO 6 : YOUR CODE STARTS HERE //////////////////////
             
 
