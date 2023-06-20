@@ -13,7 +13,7 @@ list-style-type: none;
 
 }
 .descriptorClass {
-    background: #f2f2f2;
+  background: #9eae98;
     
     outline-width: 5px;
   outline-style:groove;
@@ -25,26 +25,28 @@ list-style-type: none;
     position: absolute;
     left:250px;
     top: 40px;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 
  
 }
 
 .statsClass {
-  background: #f2f2f2;
+  text-align: center;
+  background: #9eae98;
   
   outline-width: 5px;
 outline-style:groove;
 outline-color: #2d0040;
 
-  width:400px;
-  height: 300px;
+  width:fit-content;
   padding: 30px;
   position: absolute;
   left:1400px;
   top: 40px;
   
-font-size: 25px;
+font-size: 20px;
 
 }
 
@@ -52,11 +54,24 @@ font-size: 25px;
   color: red;
 }
 
+#resolve {
+  color:rgb(37, 37, 37);
+}
+
 #ether {
   color: rgb(0, 125, 63);
 }
 
+#name {
+    color: rgb(4, 39, 46);
+    font-family: cursive;
+    position:absolute;
+    top: -20px;
+    left: 98px;
+}
+
 #location1 {
+  
   font-size:35px;
   outline-width: 3px;
   outline-style:groove;
@@ -64,6 +79,7 @@ font-size: 25px;
 }
 
 #location2 {
+  
   font-size:35px;
   outline-width: 3px;
   outline-style:groove;
@@ -71,6 +87,7 @@ font-size: 25px;
 }
 
 #location3 {
+  
   font-size:35px;
   outline-width: 3px;
   outline-style:groove;
@@ -78,8 +95,44 @@ font-size: 25px;
 }
 
 #location4 {
+
   font-size:35px;
   outline-width: 3px;
   outline-style:groove;
   outline-color: #2d0040;
+}
+
+#nextButton {
+
+  position: absolute;
+  left: 460px;
+  top: 350px;
+  font-size: x-large;
+}
+
+#everything {
+  /* for hiding entire screen*/ 
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#show {
+  position: absolute;
+    left: 98px;
+}
+
+#hidden {
+  background: #9eae98;
+  
+  outline-width: 5px;
+outline-style:groove;
+outline-color: #2d0040;
+
+  width:fit-content;
+  padding: 30px;
+  position: absolute;
+  left:1400px;
+  top: 300px;
+  
+font-size: 12px;
+
 }

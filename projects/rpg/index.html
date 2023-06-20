@@ -14,31 +14,69 @@ body {background-color: black;}
 
 
 <script> 
+var named = "Unnamed"
+
 function buttonLocation(button) {
 console.log("alert?")
 
 }
 
 
+var place = 0
+var scene = 0
+
+function nextButton(button) {
+  //have dialog for the next button is pressed
+if (place === 0) {
+  if (scene === 0) {
+
+  }
+}
 
 
 
+
+}
+var hidden = true
+function showContent(button) {
+  let hidden1 = document.getElementById("hidden")
+  if (hidden == true) {hidden1.style.display = ""; hidden = false, button.innerHTML = "Show Less"}
+  else {hidden1.style.display = "none"; hidden = true, button.innerHTML = "Show All"}
+  
+}
 
 </script>
   <!---->
 </head>
 
 <body>
+  <div id ="everything">
+<!-- superdiv  ^^^-->
 
 <div>
 
 <li class = "listClass">
 
 
-   <ul> <button id = "location1" onclick="buttonLocation(this)">Location1</button> </ul> 
+   <ul> <button id = "location1" onclick="buttonLocation(this)">???</button> </ul> 
    <ul> <button id = "location2" onclick="buttonLocation(this)">Location2</button> </ul> 
    <ul> <button id = "location3" onclick="buttonLocation(this)">Location3</button> </ul> 
    <ul> <button id = "location4" onclick="buttonLocation(this)">Location4</button> </ul> 
+
+   <script> 
+
+   
+   var location1 = document.getElementById("location1")
+   var location2 = document.getElementById("location2")
+   var location3 = document.getElementById("location3")
+   var location4 = document.getElementById("location4")
+
+   location2.style.display = "none"
+   location3.style.display = "none"
+   location4.style.display = "none"
+  
+  
+  </script>
 
  
 </li>
@@ -46,23 +84,70 @@ console.log("alert?")
 </div>
 
 <div class = "descriptorClass">
-    <h3> you </h3>
+    <h3> You awaken. You are encompassed in void; a color even a darker shade than black itself.</h3>
+    <button id = "nextButton" onclick="nextButton(this)"> Next... </button>
 </div>
 
 <div class = "statsClass">
+  <h3 id = "name">  </h3>
   <h3 id = "health"> Health: 100/100 </h3>
   <h3 id = "ether"> Ether: 20/20 </h3>
-  <h3> you </h3>
-  <h3> you </h3>
+  <h3 id = "resolve"> Resolve: Neutral </h3>
+  <button id = "show" onclick="showContent(this)"> Show All </button>
+</div>
+
+<div id = "hidden">
+  <h3 id = "agility"> Agility: 0 </h3>
+  <h3 id = "strength"> Strength: 0 </h3>
+  <h3 id = "fortitude"> Fortitude: 0 </h3>
+  <h3 id = "conduit"> Conduit: 0 </h3>
+  <h3 id = "maxether"> Reservoir: 0 </h3>
+  <h3> - </h3>
+  <h3 id = "sharp"> Sharp Weapons: 0 </h3>
+  <h3 id = "blunt"> Blunt Weapons: 0 </h3>
+  <h3 id = "ranged"> Ranged Weapons: 0 </h3>
 </div>
 
 
 
 
 
-
+</div>
 </body>
 
+<script> 
+
+var hidden1 = document.getElementById("hidden")
+hidden1.style.display = "none"
+
+let everything = document.getElementById("everything")
+everything.style.display = "none"
+
+var name = prompt("What do you wish your legendary character to be named?")
+
+function checkValidName () {
+if (name == "null" || name == "") {
+  name = prompt("You wish to be nameless? Choose something better, will you?")
+  checkValidName()
+}
+if (name.length === 1) {
+  name = prompt("That isn't a fitting name for a legend. Choose one more... memorable")
+  checkValidName()
+}
+}
+checkValidName()
+
+
+
+named = name
+a = document.getElementById("name")
+
+a.innerHTML = named
+
+everything.style.display = ""
+
+
+</script>
 
 
 
