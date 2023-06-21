@@ -14,7 +14,14 @@ body {background-color: black;}
 
 
 <script> 
-var named = "Unnamed"
+var wind = new Audio('Sounds/wind.mp3')
+var beep = new Audio('Sounds/beep.mp3')
+
+wind.loop = true
+
+
+
+var hidden = true
 
 function buttonLocation(button) {
 console.log("alert?")
@@ -25,19 +32,45 @@ console.log("alert?")
 var place = 0
 var scene = 0
 
-function nextButton(button) {
+var capname
+var named
+
+function dialogs(button) {
+  var desc = document.getElementById("descriptorClass")
   //have dialog for the next button is pressed
 if (place === 0) {
+
   if (scene === 0) {
+    scene ++
+    button.innerHTML = "Next..."
+    desc.innerHTML = "Suddenly, a voice speaks. '"+capname+". CHILD OF UNFALTERING STRIDE. YOU ARE NOT FIT HERE. YOU MUST SPREAD INFLUENCE FROM THIS WORLD TO ANOTHER.'"
 
+    
   }
+  else if (scene === 1) {
+    scene ++
+    button.innerHTML = "Next..."
+    desc.innerHTML = "'IT IS YOUR DUTY TO DEPART AS SOON AS POSSIBLE. I WILL DO THAT FOR YOU. DO YOU DESIRE A BLESSING TO ASSIST YOU IN YOUR CONQUEST?'"
+  }
+
+  else if (scene === 2) {
+    scene ++
+  }
+
+  else if (scene === 3) {
+    scene ++
+  }
+  
+}
 }
 
 
 
 
-}
-var hidden = true
+
+
+
+
 function showContent(button) {
   let hidden1 = document.getElementById("hidden")
   if (hidden == true) {hidden1.style.display = ""; hidden = false, button.innerHTML = "Show Less"}
@@ -83,9 +116,9 @@ function showContent(button) {
 
 </div>
 
-<div class = "descriptorClass">
-    <h3> You awaken. You are encompassed in void; a color even a darker shade than black itself.</h3>
-    <button id = "nextButton" onclick="nextButton(this)"> Next... </button>
+<div>
+    <h3 id = "descriptorClass"> You awaken. You are encompassed in a void; a color even a darker shade than black itself. There is audibly very intense winds, yet, you can't seem to feel any.</h3>
+    <button id = "nextButton" onclick="dialogs(this)"> Next... </button>
 </div>
 
 <div class = "statsClass">
@@ -113,38 +146,91 @@ function showContent(button) {
 
 
 </div>
+
+<h1 id = "speaker"> What do you wish your legend to be named? </h1> 
+
+<input type = "text" id = "input" value = ""> 
+<button id = "submit" onclick="inputName()"> Submit </button>
+
+
 </body>
+
+
 
 <script> 
 
 var hidden1 = document.getElementById("hidden")
 hidden1.style.display = "none"
 
+var speaker = document.getElementById("speaker")
+
+
+
 let everything = document.getElementById("everything")
 everything.style.display = "none"
 
-var name = prompt("What do you wish your legendary character to be named?")
+var input = document.getElementById("input")
+
+var submit = document.getElementById("submit")
+
+speaker.style.display = ""
+
+function inputName () {
+let val = input.value
 
 function checkValidName () {
-if (name == "null" || name == "") {
-  name = prompt("You wish to be nameless? Choose something better, will you?")
-  checkValidName()
+
+if (val == "null" || val == "") {
+speaker.innerHTML = ("You wish to be nameless? Choose something better, will you?")
+speaker.style.textAlign
+checkValidName()
 }
-if (name.length === 1) {
-  name = prompt("That isn't a fitting name for a legend. Choose one more... memorable")
-  checkValidName()
+else if (val.length === 1) {
+  speaker.innerHTML =("That isn't a fitting name for a legend. Choose one more... memorable")
+checkValidName()
+}
+else {
+  beep.play()
+  name = val
+
+named = name
+capname = name.toUpperCase()
+  a = document.getElementById("name")
+
+a.innerHTML = name
+
+
+  speaker.style.display = "none"
+    input.style.display = "none"
+    submit.style.display = "none"
+
+  setTimeout(function activate () {
+    
+    wind.play();
+
+
+  },3000)
+
+setTimeout(function funsies () {
+  everything.style.display = ""
+},8000)
+
+
+
 }
 }
+
 checkValidName()
 
 
+}
 
-named = name
-a = document.getElementById("name")
 
-a.innerHTML = named
 
-everything.style.display = ""
+
+
+
+
 
 
 </script>

@@ -12,8 +12,8 @@ list-style-type: none;
 
 
 }
-.descriptorClass {
-  background: #9eae98;
+#descriptorClass {
+  background: #3d3844;
     
     outline-width: 5px;
   outline-style:groove;
@@ -26,6 +26,8 @@ list-style-type: none;
     left:250px;
     top: 40px;
 
+    color: rgb(101, 138, 101);
+    font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     
 
@@ -34,7 +36,7 @@ list-style-type: none;
 
 .statsClass {
   text-align: center;
-  background: #9eae98;
+  background: #3d3844;
   
   outline-width: 5px;
 outline-style:groove;
@@ -55,7 +57,7 @@ font-size: 20px;
 }
 
 #resolve {
-  color:rgb(37, 37, 37);
+  color:rgb(117, 117, 117);
 }
 
 #ether {
@@ -63,8 +65,10 @@ font-size: 20px;
 }
 
 #name {
-    color: rgb(4, 39, 46);
+  
+    color: rgb(14, 124, 146);
     font-family: cursive;
+    font-weight: bolder;
     position:absolute;
     top: -20px;
     left: 98px;
@@ -105,9 +109,11 @@ font-size: 20px;
 #nextButton {
 
   position: absolute;
-  left: 460px;
+  left: 700px;
   top: 350px;
   font-size: x-large;
+
+  
 }
 
 #everything {
@@ -121,7 +127,7 @@ font-size: 20px;
 }
 
 #hidden {
-  background: #9eae98;
+  background: #3d3844;
   
   outline-width: 5px;
 outline-style:groove;
@@ -132,7 +138,27 @@ outline-color: #2d0040;
   position: absolute;
   left:1400px;
   top: 300px;
+  color: rgb(101, 138, 101);
   
 font-size: 12px;
 
+}
+
+#speaker {
+  margin:auto;
+  color: white;
+  text-align: center;
+}
+
+#input {
+  position:absolute;
+  left:45.5%;
+  top: 70px;
+}
+
+#submit {
+  position: absolute;
+  
+  left:47.6%;
+  top:95px;
 }
