@@ -33,6 +33,11 @@ var background = function (window) {
 
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
+        var tree = draw.bitmap("img/runtimeBeach/tree.png");
+        var building = draw.bitmap("img/runtimeBeach/wave.png")
+        var buildings = []
+        var sand = draw.bitmap("img/runtimeBeach/sand.jpg")
+        var water = draw.bitmap("img/runtimeBeach/water.jpg")
         function render() {
             background.removeAllChildren();
 
@@ -51,6 +56,18 @@ var background = function (window) {
             moon.scaleY = 1.5;
             background.addChild(moon);
 
+           
+            sand.x = 0
+            sand.y = 520
+            sand.scaleX = 1.5
+            background.addChild(sand);
+
+            water.x = 0
+            water.scaleX = 5
+            water.y = 270
+            water.scaleY = 0.7
+            background.addChild(water)
+
 
 
             for (var i = 1; i <= 100; i++) {
@@ -60,17 +77,37 @@ var background = function (window) {
                 background.addChild(circle);
             }
 
+
+
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
 
+         
+            for (var i = 0; i < 5; ++i) {
+                var buildingHeight = 300;
+                 building = draw.bitmap("img/runtimeBeach/wave.png")
+                building.x = 3000 * i;
+                building.y = groundY-400;
+                background.addChild(building);
+                buildings.push(building);
+              }
 
             // TODO 3: Part 1 - Add a tree
 
+            tree.scaleX = 2
+            tree.scaleY = 2
+            tree.x = 2200;
+            tree.y = groundY-400;
+            background.addChild(tree);;
+
+        
 
         } // end of render function - DO NOT DELETE
 
 
         // Perform background animation
         // called on each timer "tick" - 60 times per second
+       
+       
         function update() {
             // useful variables
             var canvasWidth = app.canvas.width;
@@ -78,10 +115,23 @@ var background = function (window) {
             var groundY = ground.y;
 
             // TODO 3: Part 2 - Move the tree!
+           
 
+            tree.x = tree.x-1
+            if (tree.x < -500) {tree.x = 2300}
+            
+            sand.x = sand.x-0.5
+            if (sand.x < -160) {sand.x = 0}
+    
 
             // TODO 4: Part 2 - Parallax
+            
+            for (var i = 0; i <= buildings.length-1 ; i++) {
+                buildings[i].x = buildings[i].x+1
+                if (buildings[i].x > 2300) {buildings[i].x = -2300
 
+                }
+            }
 
         } // end of update function - DO NOT DELETE
 
