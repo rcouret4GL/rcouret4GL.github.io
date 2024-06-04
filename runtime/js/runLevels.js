@@ -135,7 +135,7 @@ function createMarker (x,y) {
 
     function startLevel() {
       // TODO 13 goes below here
-var level
+var levelgit add .
 console.log(currentLevel)
 level = levelData[currentLevel]
 currentLevel = currentLevel+1
